@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		.wrapper{
+		color:#18A9BE;
+		background-color:#231F20;
+		display: grid;
+		grid-template-columns:repeat(3, 3fr);
+		grid-column-gap:1em;
+		grid-auto-rows: minmax(10px, auto);
+		height:100vh;
+		background-image: url('makeyourluck.gif');
+		background-size: cover;
+		background-position: center;
+	}
+
+	.headH1{
+		color:white;
+		text-align: center;
+	}
+	.textPosition{
+		margin-top: 15%;
+		text-align: center;
+		font-size: 20px;
+	}
+
+	
+	</style>
+</head>
+<body>
+
+<div class= "wrapper">
+	<div class="textPosition">
+		<p> Guess what letter Im thinking! What score can you make it to before you guess incorrectly ten times????</p>
+	</div>
+	<div>
+	<h1 class="headH1"> The Psychic Game </h1>
+	</div>
+	<div class="textPosition">
+		<p> Key word LETTER! Otherwise you'll just have a really bad score and be labeled as a noob! Good Luck!</p>
+	</div>
+	
+		<div class="textPosition">
+			<p id="wins">Wins: 0</p>
+			<p id="losses">Losses: 0</p>
+			<p id="guesses">Guesses Remaining: 10</p>		</div>
+		<div>
+		</div>
+		<div class="score">
+
+			
+		</div>
+	
+</div>
+
+	<script type="text/javascript">
+	var userGuess;
+	var wins = 0;
+	var losses = 0; 
+	var compChoice;
+	var alphabetArray = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q","r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	var guesses = 10;
+	
+	compChoice = alphabetArray[Math.floor(Math.random() * alphabetArray.length)];
+	document.onkeyup = function (event) {
+		var userGuess = event.key;
+			alert("You guessed " + userGuess);
+			
+			if(guesses === 0){
+				alert("Game over")
+				alert("You won " + wins + " times and lost "+ losses + " times!")
+				guesses = 10
+				wins = 0
+				losses = 0 
+				document.getElementById("losses").innerHTML = "<p>Losses: 0</p>";
+				document.getElementById("guesses").innerHTML = "<p>Guesses Remaining: 10</p>";
+				document.getElementById("wins").innerHTML = "<p>Wins: 0</p>";
+			}else if(userGuess === compChoice){
+				alert("You're Right")
+				compChoice = alphabetArray[Math.floor(Math.random() * alphabetArray.length)];
+				wins++
+				
+		
+				document.getElementById("wins").innerHTML = "<p>Wins: " + wins + "</p>";
+				console.log(wins)
+				
+			}else {
+				alert("Try Again");
+				losses++
+				document.getElementById("losses").innerHTML = "<p>Losses: " + losses + "</p>";
+				console.log(losses)
+				guesses--
+				document.getElementById("guesses").innerHTML = "<p>Guesses Remaining: " + guesses + "</p>"
+				// losses + 1
+				//guess -1
+			}
+	}
+	</script>
+
+</body>
+</html>
